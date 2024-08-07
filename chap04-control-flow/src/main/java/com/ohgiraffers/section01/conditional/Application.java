@@ -8,6 +8,7 @@ public class Application {
         A_if a = new A_if();
         B_ifElse b = new B_ifElse();
         C_ifElseIf c = new C_ifElseIf();
+        D_switch d = new D_switch();
         //a.testSimpleIfStatement();
 
         //a.testNestedIfStatement();
@@ -18,6 +19,11 @@ public class Application {
 
         //c.testSimpleIfElseIfStatement();
 
-        c.testNestedIfElseIfStatement();
+        //c.testNestedIfElseIfStatement();
+
+        //d.testSimpleSwitchStatement();
+
+        d.testSwitchVendingMachine();
+
     }
 }

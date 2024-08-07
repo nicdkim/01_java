@@ -31,6 +31,7 @@ public class Question {
         int b = sc.nextInt();
         System.out.print("c : ");
         int c = sc.nextInt();
+        sc.close();
 
         Cal cal = new Cal();
         //System.out.println("평균 : " + cal.avrage(a,b,c));
@@ -41,12 +42,6 @@ public class Question {
         } else {
             System.out.printf("평균 점수 : %.2f\n불합격\n", ave);
         }
-        sc.close();
-
-
-
-
-        
 
     }
 
