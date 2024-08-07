@@ -92,9 +92,12 @@ public class A_for {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("시작 숫자 : ");
-        int start = sc.nextInt();
+        int a = sc.nextInt();
         System.out.print("끝 숫자 : ");
-        int end = sc.nextInt();
+        int b = sc.nextInt();
+
+        int start = Math.min(a, b);
+        int end = Math.max(a, b);
 
         System.out.printf("%d와 %d 사이의 소수 : ", start, end);
         inRange(start, end);
