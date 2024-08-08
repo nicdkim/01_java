@@ -99,7 +99,7 @@ public class A_for {
         int start = Math.min(a, b);
         int end = Math.max(a, b);
 
-        System.out.printf("%d와 %d 사이의 소수 : ", start, end);
+        System.out.printf("%d ~ %d 사이의 소수 : ", start, end);
         inRange(start, end);
 
     }
