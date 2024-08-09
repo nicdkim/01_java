@@ -23,7 +23,7 @@ public class Question {
 
 
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("---------------------------");
         System.out.print("배열의 길이 : ");
         int length = sc.nextInt();
 
