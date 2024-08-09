@@ -73,10 +73,10 @@ public class Go {
         Scanner sc = new Scanner(System.in);
         int row, col;
         while (true) {
-            System.out.println("Player " + currentPlayer + " 행과 열 : ");
+            System.out.print("Player " + currentPlayer + " 행 : ");
             row = sc.nextInt();
+            System.out.print("Player " + currentPlayer + " 열 : ");
             col = sc.nextInt();
-
             if (row >= 0 && row < size && col >= 0 && col < size &&
                     board[row][col] == '.') {
                 board[row][col] = currentPlayer == '1' ? '○' : '●';
