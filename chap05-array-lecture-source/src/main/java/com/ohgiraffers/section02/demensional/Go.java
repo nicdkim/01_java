@@ -34,7 +34,7 @@ public class Go {
                 gameWon = checkWin();
                 if (gameWon) {
                     printBoard();
-                    System.out.println("Player " + currentPlayer + " 승");
+                    System.out.println("Player" + currentPlayer + " 승");
                     updateScore();
                     printScore();
                 } else {
