@@ -27,5 +27,12 @@ public class Application01 {
         * 따라서 잦은 문자열 변경이 일어나는 경우에는 String 보다 성능이 좋다.
         * */
 
+        StringBuilder sb = new StringBuilder("java");
+        System.out.println("sb : " + sb);
+        System.out.println("sb.hashCode() : " + sb.hashCode());
+
+        sb.append("oracle");
+        System.out.println("sb : " + sb);
+        System.out.println("sb.hashCode() : " + sb.hashCode());
     }
 }
