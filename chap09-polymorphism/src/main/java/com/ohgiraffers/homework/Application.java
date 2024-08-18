@@ -1,6 +1,5 @@
 package main.java.com.ohgiraffers.homework;
 
-import main.java.com.ohgiraffers.homework.auth.SnsAuth;
 import main.java.com.ohgiraffers.homework.auth.impl.GoogleAuth;
 import main.java.com.ohgiraffers.homework.auth.impl.KakaoAuth;
 import main.java.com.ohgiraffers.homework.auth.impl.NaverAuth;
@@ -15,13 +14,10 @@ public class Application {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Map<String, Map<String, String>> membersDatabase = new HashMap<>();
-        membersDatabase.put("GoogleAuth", new HashMap<>());
-        membersDatabase.put("NaverAuth", new HashMap<>());
-        membersDatabase.put("KakaoAuth", new HashMap<>());
-        MemberService memberService = null;
-
-        boolean result;
+        Map<String, Map<String, String>> usersDatabase = new HashMap<>();
+        usersDatabase.put("GoogleAuth", new HashMap<>());
+        usersDatabase.put("KakaoAuth", new HashMap<>());
+        usersDatabase.put("NaverAuth", new HashMap<>());
 
         while (true) {
             System.out.println("----------- 인증 방식을 선택하세요 -----------");
@@ -31,8 +27,9 @@ public class Application {
             int choice = sc.nextInt();
             sc.nextLine();
 
-
+            MemberService memberService = null;
             String authType = null;
+
             switch (choice) {
                 case 1:
                     memberService = new MemberService(new GoogleAuth());
@@ -54,7 +51,7 @@ public class Application {
                     continue;
             }
 
-            Map<String, String> currentAuthMembers = membersDatabase.get(authType);
+            Map<String, String> currentUsers = usersDatabase.get(authType);
 
             while (true) {
                 System.out.println("--------------- 메뉴 ---------------");
@@ -75,41 +72,45 @@ public class Application {
                 String pwd = sc.nextLine();
                 MemberDTO memberDTO = new MemberDTO(id, pwd);
 
+                //boolean result;
                 if (action == 1) {
-                        switch (choice) {
-                            case 1:
-                                memberService = new MemberService(new GoogleAuth());
-                                result = memberService.findMember(memberDTO);
-                                if (result) {
-                                    System.out.println("google로그인에 성공하였습니다. " + memberDTO.getId());
-                                    return;
-                                }
-                                break;
-                            case 2:
-                                memberService = new MemberService(new NaverAuth());
-                                result = memberService.findMember(memberDTO);
-                                if (result) {
-                                    System.out.println("naver로그인에 성공하였습니다. " + memberDTO.getId());
-                                    return;
-                                }
-                                break;
-                            case 3:
-                                memberService = new MemberService(new KakaoAuth());
-                                result = memberService.findMember(memberDTO);
-                                if (result) {
-                                    System.out.println("kakao로그인에 성공하였습니다.. " + memberDTO.getId());
-                                    return;
-                                }
-                                break;
-                            case 9:
-                                System.out.println("로그인을 종료합니다.");
+                    switch (choice) {
+                        case 1:
+                            memberService = new MemberService(new GoogleAuth());
+                            //result = memberService.findMember(memberDTO);
+                            boolean result = currentUsers.containsKey(id) && currentUsers.get(id).equals(pwd);
+                            if (result) {
+                                System.out.println("google로그인에 성공하였습니다. " + memberDTO.getId());
                                 return;
-                        }
+                            }
+                            break;
+                        case 2:
+                            memberService = new MemberService(new NaverAuth());
+                            //result = memberService.findMember(memberDTO);
+                            result = currentUsers.containsKey(id) && currentUsers.get(id).equals(pwd);
+                            if (result) {
+                                System.out.println("naver로그인에 성공하였습니다. " + memberDTO.getId());
+                                return;
+                            }
+                            break;
+                        case 3:
+                            memberService = new MemberService(new KakaoAuth());
+                            //result = memberService.findMember(memberDTO);
+                            result = currentUsers.containsKey(id) && currentUsers.get(id).equals(pwd);
+                            if (result) {
+                                System.out.println("kakao로그인에 성공하였습니다.. " + memberDTO.getId());
+                                return;
+                            }
+                            break;
+                        case 9:
+                            System.out.println("로그인을 종료합니다.");
+                            return;
+                    }
                     System.out.println("인증된 회원이 없습니다.");
                 } else if (action == 2) {
-                    if (!currentAuthMembers.containsKey(id)) {
-                        currentAuthMembers.put(id, pwd);
-                        System.out.println(id + "님, " + authType + "에 회원가입이 완료되었습니다.");
+                    if (!currentUsers.containsKey(id)) {
+                        currentUsers.put(id, pwd);
+                        System.out.println(memberDTO.getId() + "님, " + authType + "에 회원가입이 완료되었습니다.");
                         break;
                     } else {
                         System.out.println("이미 존재하는 회원입니다.");

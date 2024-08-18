@@ -10,14 +10,17 @@ public class MemberService {
     private SnsAuth snsAuth;
 
     public MemberService(SnsAuth snsAuth) {
+
         this.snsAuth = snsAuth;
     }
 
     public boolean addMember(MemberDTO memberDTO) {
+
         return snsAuth.signUp(memberDTO);
     }
 
     public boolean findMember(MemberDTO memberDTO) {
+
         return snsAuth.login(memberDTO);
     }
 
