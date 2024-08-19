@@ -10,10 +10,12 @@ public class MemberDTO {
     }
 
     public String getId() {
+
         return id;
     }
 
     public String getPwd() {
+
         return pwd;
     }
 }
