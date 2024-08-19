@@ -5,7 +5,7 @@ import java.util.*;
 public class LottoProgram {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
-    private static final int MAX_PURCHASE_LIMIT = 10;
+    //private static final int MAX_PURCHASE_LIMIT = 10;
     private static final int SALES_LIMIT = 10;
 
     private Map<String, List<Set<Integer>>> userLottos = new LinkedHashMap<>();
